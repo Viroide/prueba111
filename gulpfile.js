@@ -13,8 +13,7 @@ var gulp        = require('gulp'),
     header      = require('gulp-header'),
     replace     = require('gulp-token-replace'),
     nib         = require('nib'),
-    jade        = require('gulp-jade'),
-    coffee      = require('gulp-coffee');
+    jade        = require('gulp-jade')
 
 var pkg         = require('./package.json'),
     config      = require('./config.json');
@@ -54,9 +53,8 @@ gulp.task('html-build', function() {
 
 
 gulp.task('js-build', function () {
-  return gulp.src(srcPath+'/coffee/*.coffee')
+  return gulp.src(srcPath+'/js/*.js')
     .pipe(sourcemaps.init())
-    .pipe(coffee())
     .pipe(jshint())
     .pipe(jshint.reporter('default'))
     .pipe(uglify())
@@ -68,9 +66,8 @@ gulp.task('js-build', function () {
 });
 
 gulp.task('js', function () {
-  return gulp.src(srcPath+'/coffee/*.coffee')
+  return gulp.src(srcPath+'/js/*.js')
     .pipe(sourcemaps.init())
-    .pipe(coffee())
     .pipe(jshint())
     .pipe(jshint.reporter('default'))
     .pipe(concat(pkg.name+'.js'))
@@ -109,7 +106,7 @@ gulp.task('watch', function() {
   livereload.listen();
   gulp.watch(srcPath+'/jade/*.jade', ['html']);
   gulp.watch(srcPath+'/stylus/*.styl', ['css']);
-  gulp.watch(srcPath+'/coffee/*.coffee', ['js']);
+  gulp.watch(srcPath+'/js/*.js', ['js']);
 });
 
 
